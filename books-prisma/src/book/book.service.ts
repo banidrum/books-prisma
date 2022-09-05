@@ -1,14 +1,28 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Book, Prisma } from '@prisma/client';
 
 @Injectable()
 export class BookService {
-    async getAllBooks() {}
+  constructor(private prisma: PrismaService) {}
 
-    async getBookById(id: string) {}
+  async getAllBooks(): Promise<Book[]> {
+    return this.prisma.book.findMany();
+  }
 
-    async addBook() {}
+  async getBookById(id: string): Promise<Book> {
+    return this.prisma.book.findFirst({ where: { id } });
+  }
 
-    async editBook(id: string) {}
+  async addBook() {
+    // return this.prisma.book.create({ data: '' });
+  }
 
-    async deleteBook(id: string) {}
+  async editBook(id: string) {
+    // return this.prisma.book.update({ data: {author} });
+  }
+
+  async deleteBook(id: string) {
+    return this.prisma.book.delete({ where: { id } });
+  }
 }

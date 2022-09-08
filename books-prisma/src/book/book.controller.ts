@@ -15,12 +15,12 @@ export class BookController {
 
   @Get()
   getAllBooks() {
-    this.bookService.getAllBooks();
+    return this.bookService.getAllBooks();
   }
 
   @Get(':id')
   getBookById(@Param('id') id: string) {
-    this.bookService.getBookById(id);
+    return this.bookService.getBookById(id);
   }
 
   @Post()
@@ -28,13 +28,13 @@ export class BookController {
     this.bookService.addBook(book);
   }
 
-  @Put('id')
+  @Put(':id')
   editBook(@Param('id') id: string, @Body() book: BookDTO) {
-    this.bookService.editBook(id, book);
+    return this.bookService.editBook(id, book);
   }
 
-  @Delete('id')
+  @Delete(':id')
   removeBook(@Param('id') id: string) {
-    this.bookService.deleteBook(id);
+    return this.bookService.deleteBook(id);
   }
 }
